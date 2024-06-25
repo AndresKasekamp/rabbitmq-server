@@ -55,6 +55,7 @@ RUN apt install rabbitmq-server -y --fix-missing
 
 EXPOSE 5672
 
+RUN chmod +x rabbitmq-start.sh
 CMD ["/rabbitmq-start.sh"]
 
 
