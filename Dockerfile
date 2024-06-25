@@ -10,8 +10,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 COPY ./rabbitmq-start.sh /
 
 # # Update package list and install prerequisites
-RUN apt update
-RUN apt install -y curl gnupg apt-transport-https
+RUN apt-get update && apt-get install -y curl gnupg apt-transport-https
 
 ## Team RabbitMQ's main signing key
 RUN curl -1sLf "https://keys.openpgp.org/vks/v1/by-fingerprint/0A9AF2115F4687BD29803A206B73A36E6026DFCA" | gpg --dearmor | tee /usr/share/keyrings/com.rabbitmq.team.gpg > /dev/null
@@ -51,11 +50,11 @@ RUN apt install -y erlang-base \
     erlang-syntax-tools erlang-tftp erlang-tools erlang-xmerl
 
 ## Install rabbitmq-server and its dependencies
-RUN apt install rabbitmq-server -y --fix-missing
+RUN apt-get install rabbitmq-server -y --fix-missing
 
 EXPOSE 5672
 
-RUN chmod +x rabbitmq-start.sh
+RUN chmod +x ./rabbitmq-start.sh
 CMD ["/rabbitmq-start.sh"]
 
 
