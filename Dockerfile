@@ -8,6 +8,7 @@ WORKDIR /app
 ENV DEBIAN_FRONTEND=noninteractive
 
 COPY ./rabbitmq-start.sh /
+RUN chmod +x /rabbitmq-start.sh
 
 # # Update package list and install prerequisites
 RUN apt-get update && apt-get install -y curl gnupg apt-transport-https
@@ -40,7 +41,7 @@ deb-src [signed-by=/usr/share/keyrings/rabbitmq.9F4587F226208342.gpg] https://pp
 EOF
 
 ## Update package indices
-RUN apt update -y
+RUN apt-get update -y
 
 ## Install Erlang packages
 RUN apt install -y erlang-base \
@@ -54,7 +55,6 @@ RUN apt-get install rabbitmq-server -y --fix-missing
 
 EXPOSE 5672
 
-RUN chmod +x ./rabbitmq-start.sh
 CMD ["/rabbitmq-start.sh"]
 
 
