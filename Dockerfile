@@ -11,8 +11,8 @@ COPY ./rabbitmq-start.sh /
 RUN chmod +x /rabbitmq-start.sh
 
 # # Update package list and install prerequisites
-RUN apt-get update && apt-get install -y curl gnupg apt-transport-https locales && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
-ENV LANG en_US.utf8
+RUN apt-get update && apt-get install -y curl gnupg apt-transport-https
+
 
 ## Team RabbitMQ's main signing key
 RUN curl -1sLf "https://keys.openpgp.org/vks/v1/by-fingerprint/0A9AF2115F4687BD29803A206B73A36E6026DFCA" | gpg --dearmor | tee /usr/share/keyrings/com.rabbitmq.team.gpg > /dev/null
