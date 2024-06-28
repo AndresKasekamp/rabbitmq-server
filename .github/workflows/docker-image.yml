@@ -29,4 +29,4 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: ${{ github.event_name != 'pull_request' }}
-          tags: andreskasekamp/rabbitmq-server:latest, andreskasekamp/rabbitmq-server:0.0.1
+          tags: andreskasekamp/rabbitmq-server:latest, andreskasekamp/rabbitmq-server:0.0.2
